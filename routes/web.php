@@ -11,6 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::prefix('category')->group(function (){
+    Route::get('/', 'CategoryController@show')->name('category.show');
+    Route::get('/create', 'CategoryController@create')->name('category.create');
+    Route::post('/create', 'CategoryController@store')->name('category.store');
 });
