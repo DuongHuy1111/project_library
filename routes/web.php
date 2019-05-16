@@ -12,6 +12,7 @@
 */
 
 
+
 Route::group(['prefix' => 'users'], function () {
     Route::get('/', 'UserController@index')->name('users.index');
     Route::get('/create', 'UserController@create')->name('users.create');
@@ -19,6 +20,14 @@ Route::group(['prefix' => 'users'], function () {
     Route::get('/{id}/edit', 'UserController@edit')->name('users.edit');
     Route::post('/{id}/edit', 'UserController@update')->name('users.update');
     Route::get('/{id}/delete', 'UserController@delete')->name('users.delete');
+
+});
+
+Route::prefix('category')->group(function (){
+    Route::get('/', 'CategoryController@show')->name('category.show');
+    Route::get('/create', 'CategoryController@create')->name('category.create');
+    Route::post('/create', 'CategoryController@store')->name('category.store');
+
 });
 
 Route::get('/', 'LoginController@index')->name('index');
@@ -31,3 +40,6 @@ Route::group(['prefix' => 'roles'], function () {
     Route::post('/edit', 'RoleController@store')->name('roles.store');
     Route::get('/{id}/delete', 'RoleController@delete')->name('roles.delete');
 });
+
+
+
