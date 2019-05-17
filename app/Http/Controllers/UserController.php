@@ -30,7 +30,7 @@ class UserController extends Controller
         $users = new User();
         $users->name = $request->input('name');
         $users->email = $request->input('email');
-        $users->password = $request->input('password');
+        $users->password = bcrypt($request->input('password'));
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -58,7 +58,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->name = $request->input('name');
         $user->email = $request->input('email');
-        $user->password = $request->input('password');
+        $user->password = bcrypt($request->input('password'));
         if ($request->hasFile('image')) {
             $currentImg = $user->image;
             if ($currentImg) {
