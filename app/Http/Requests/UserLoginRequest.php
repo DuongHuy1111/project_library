@@ -24,22 +24,21 @@ class UserLoginRequest extends FormRequest
     public function rules()
     {
         return [
-//            'name' => 'required|min:2|max:30',
-//            'password' => 'required|min:8'
+            'name' => 'required|min:5|max:30',
+           'password' => 'required|min:8'
         ];
 
     }
 
-//    public function messages()
-//    {
-//       $message = [
-//           'name.required' => 'We need to know your full name!',
-//           'name.min' => 'Name size must be between 2 and 30!',
-//           'name.max' => 'Name size must be between 2 and 30!',
-//           'password.required' => 'password is required',
-//           'password.min' => 'Password at least eight characters'
-//       ];
-//
-//       return $message;
-//    }
+    public function messages()
+    {
+        return [
+            'name.required' => 'We need to know your full name!',
+            'name.min' => 'Name size must be between 2 and 30!',
+            'name.max' => 'Name size must be between 2 and 30!',
+            'password.required' => 'password is required',
+            'password.min' => 'Password at least eight characters'
+        ];
+
+    }
 }

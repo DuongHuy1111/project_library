@@ -1,111 +1,77 @@
-@extends('home')
-@section('title', 'Login')
-@section('content')
-    <div class="container">
-    <div class="row">
-        <div class="col-sm-6 col-md-4 col-md-offset-4">
-            <h1 class="text-center login-title">Sign in</h1>
-            <div class="account-wall">
-                <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
-                     alt="">
-                <form class="form-signin" action="" method="post">
-                    @csrf
-                    <input type="text" name="name" class="form-control" placeholder="Full name" required autofocus>
-                    <input type="password" name="password" class="form-control" placeholder="Password" required>
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">
-                        Sign in</button>
-                    <label class="checkbox pull-left">
-                        <input type="checkbox" value="remember-me">
-                        Remember me
-                    </label>
-                    <a href="#" class="pull-right need-help">Need help? </a><span class="clearfix"></span>
-                </form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Glassy Login Form A Responsive Widget Template :: w3layouts</title>
+    <!-- Meta tag Keywords -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Glassy Login Form Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+        function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- Meta tag Keywords -->
+    <!-- css files -->
+    <link rel="stylesheet" href="/css/font-awesome.css"> <!-- Font-Awesome-Icons-CSS -->
+    <link rel="stylesheet" href="/css/style.css" type="text/css" media="all" /> <!-- Style-CSS -->
+    <!-- //css files -->
+    <!-- web-fonts -->
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700" rel="stylesheet">
+    <!-- //web-fonts -->
+</head>
+<body>
+<!--header-->
+<div class="header-w3l">
+    <h1>Glassy Login Library</h1>
+</div>
+<!--//header-->
+<!--main-->
+<div class="main-w3layouts-agileinfo">
+    <!--form-stars-here-->
+    <div class="wthree-form">
+        <h2>Fill out the form below to login</h2>
+        @if(Session::has('login-fail'))
+            <p style="color: red">{{Session::get('login-fail')}}</p>
+            @endif
+        <form action="{{route('loginUSer')}}" method="post">
+            @csrf
+            <div class="form-sub-w3">
+                <input type="text" name="name" placeholder="Username" value="{{old('name')}}" />
+                @if($errors->has('name'))
+                    <p style="color:red">{{$errors->first('name')}}</p>
+                    @endif
+                <div class="icon-w3">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                </div>
             </div>
-            <a href="#" class="text-center new-account">Create an account </a>
-        </div>
-    </div>
-    </div>
+            <div class="form-sub-w3">
+                <input type="password" name="password" placeholder="Password" />
+                @if($errors->has('Password'))
+                    <p style="color:red">{{$errors->first('password')}}</p>
+                @endif
+                <div class="icon-w3">
+                    <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+                </div>
+            </div>
+            <label class="anim">
+                <input type="checkbox" class="checkbox">
+                <span>Remember Me</span>
+                <a href="#">Forgot Password</a>
+            </label>
+            <div class="clear"></div>
+            <div class="submit-agileits">
+                <input type="submit" value="Login">
+            </div>
+        </form>
 
-    <style>
-        body {
-            padding-left: 200px;
-            padding-top: 70px;
-        }
-        .form-signin
-        {
-            max-width: 330px;
-            padding: 15px;
-            margin: 0 auto;
-        }
-        .form-signin .form-signin-heading, .form-signin .checkbox
-        {
-            margin-bottom: 10px;
-        }
-        .form-signin .checkbox
-        {
-            font-weight: normal;
-        }
-        .form-signin .form-control
-        {
-            position: relative;
-            font-size: 16px;
-            height: auto;
-            padding: 10px;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-        }
-        .form-signin .form-control:focus
-        {
-            z-index: 2;
-        }
-        .form-signin input[type="text"]
-        {
-            margin-bottom: -1px;
-            border-bottom-left-radius: 0;
-            border-bottom-right-radius: 0;
-        }
-        .form-signin input[type="password"]
-        {
-            margin-bottom: 10px;
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-        }
-        .account-wall
-        {
-            margin-top: 20px;
-            padding: 40px 0px 20px 0px;
-            background-color: #f7f7f7;
-            -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-            -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-        }
-        .login-title
-        {
-            color: #555;
-            font-size: 18px;
-            font-weight: 400;
-            display: block;
-        }
-        .profile-img
-        {
-            width: 96px;
-            height: 96px;
-            margin: 0 auto 10px;
-            display: block;
-            -moz-border-radius: 50%;
-            -webkit-border-radius: 50%;
-            border-radius: 50%;
-        }
-        .need-help
-        {
-            margin-top: 10px;
-        }
-        .new-account
-        {
-            display: block;
-            margin-top: 10px;
-        }
+    </div>
+    <!--//form-ends-here-->
 
-    </style>
-    @endsection
+</div>
+<!--//main-->
+<!--footer-->
+<div class="footer">
+    <p>&copy; 2019 Glassy Login Library. All rights reserved | Design by <a href="http://youtube.com">Huy Alex</a></p>
+</div>
+<!--//footer-->
+</body>
+</html>
