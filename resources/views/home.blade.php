@@ -18,8 +18,14 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
 </head>
+{{--<h1 style="text-align: center;color: #2d995b">@yield('name')</h1>--}}
 <body>
 <div class="container">
+    @if(Session::has('success'))
+        <p class="alert-success">{{Session::get('success')}}</p>
+        @endif
+    <a href="{{route('category.show')}}"><button style="text-align: center" class="btn btn-outline-info">List Category</button></a>
+    <a href="{{route('book.show')}}"><button style="text-align: center" class="btn btn-outline-info">List Book</button></a>
     @yield('content')
 </div>
 </body>
