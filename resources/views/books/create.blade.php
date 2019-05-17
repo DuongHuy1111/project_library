@@ -1,37 +1,58 @@
 @extends('home')
 @section('title', 'Add Category')
+{{--@section('name', 'Create Book Category')--}}
 @section('content')
     <body class="main-bg">
     <div class="login-container text-c animated flipInX">
         <div>
             <h1 class="logo-badge text-whitesmoke"><span class="fa fa-user-circle"></span></h1>
         </div>
-        <h3 class="text-j">Create Book Category</h3>
         <div class="container-content">
-            <form class="margin-t" action="{{route('category.store')}}" method="post" enctype="multipart/form-data">
+            <form class="margin-t" action="{{route('book.store')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
-                    <label>Name Product</label>
-                    <input type="text" name="name" class="form-control" placeholder="Enter your category" >
+                    <label>Name Book</label>
+                    <input type="text" name="name" class="form-control" placeholder="Enter your name book" required>
                     @if($errors->has('name'))
                         <p style="color: red">{{$errors->first('name')}}</p>
-                        @endif
+                    @endif
+                </div>
+                <div class="form-control">
+                    <label>Description</label>
+                    <input type="text" class="form-control-file" name="description" placeholder="Enter description">
                 </div>
                 <div class="form-control">
                     <label>Image</label>
-                    <input type="file" class="form-control-file" name="image">
+                    <input type="file" class="form-control-file" name="image" required>
                     @if($errors->has('image'))
                         <p style="color: red">{{$errors->first('image')}}</p>
                     @endif
                 </div>
+                <div class="form-control">
+                    <label>Category</label>
+                    <select class="form-control-file" name="category_id">
+                        @foreach($categories as $category)
+                            <option value="{{$category->id}}">{{$category->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label>Quantity</label>
+                    <input type="text" class="form-control-file" name="totalQty" placeholder="Enter quantity" required>
+                    @if($errors->has('totalQty'))
+                        <p style="color: red">{{$errors->first('totalQty')}}</p>
+                    @endif
+                </div>
                 <div>
                     <button type="submit" class="form-button margin-b">Create</button>
-                    <a href="{{route('category.show')}}" >
+                    <a href="{{route('book.show')}}">
                         <button type="button" class="btn btn-secondary btn-sm">Cancle</button>
                     </a>
                 </div>
             </form>
-            <p class="margin-t text-whitesmoke"><small> Văn Linh &copy; 2019</small> </p>
+            <p class="margin-t text-whitesmoke">
+                <small> Văn Linh &copy; 2019</small>
+            </p>
         </div>
     </div>
     </body>
@@ -40,6 +61,7 @@
         html {
             height: 100%;
         }
+
         body {
             height: 100%;
             margin: 0;
@@ -51,12 +73,15 @@
         .text-c {
             text-align: center;
         }
+
         .text-l {
             text-align: left;
         }
+
         .text-r {
             text-align: right
         }
+
         .text-j {
             text-align: justify;
         }
@@ -65,6 +90,7 @@
         .text-whitesmoke {
             color: whitesmoke
         }
+
         .text-darkyellow {
             color: rgba(255, 235, 59, 0.432)
         }
@@ -79,11 +105,13 @@
         .button {
             border-radius: 3px;
         }
+
         .form-button {
             background-color: rgba(255, 235, 59, 0.24);
             border-color: rgba(255, 235, 59, 0.24);
             color: #e6e6e6;
         }
+
         .form-button:hover,
         .form-button:focus,
         .form-button:active,
@@ -96,6 +124,7 @@
             border-color: rgba(255, 235, 59, 0.473);
             color: #e6e6e6;
         }
+
         .button-l {
             width: 100% !important;
         }
@@ -105,12 +134,15 @@
         .margin-g {
             margin: 15px;
         }
+
         .margin-g-sm {
             margin: 10px;
         }
+
         .margin-g-md {
             margin: 20px;
         }
+
         .margin-g-lg {
             margin: 30px;
         }
@@ -118,12 +150,15 @@
         .margin-l {
             margin-left: 15px;
         }
+
         .margin-l-sm {
             margin-left: 10px;
         }
+
         .margin-l-md {
             margin-left: 20px;
         }
+
         .margin-l-lg {
             margin-left: 30px;
         }
@@ -131,12 +166,15 @@
         .margin-r {
             margin-right: 15px;
         }
+
         .margin-r-sm {
             margin-right: 10px;
         }
+
         .margin-r-md {
             margin-right: 20px;
         }
+
         .margin-r-lg {
             margin-right: 30px;
         }
@@ -144,12 +182,15 @@
         .margin-t {
             margin-top: 15px;
         }
+
         .margin-t-sm {
             margin-top: 10px;
         }
+
         .margin-t-md {
             margin-top: 20px;
         }
+
         .margin-t-lg {
             margin-top: 30px;
         }
@@ -157,12 +198,15 @@
         .margin-b {
             margin-bottom: 15px;
         }
+
         .margin-b-sm {
             margin-bottom: 10px;
         }
+
         .margin-b-md {
             margin-bottom: 20px;
         }
+
         .margin-b-lg {
             margin-bottom: 30px;
         }
@@ -181,17 +225,22 @@
             transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
             width: 100%;
         }
+
         .form-control:focus,
         .border-line:focus {
             border-color: #FFEB3B;
             background-color: #616161;
             color: #e6e6e6;
         }
+
         .form-control,
         .form-control:focus {
             box-shadow: none;
         }
-        .form-control::-webkit-input-placeholder { color: #BDBDBD; }
+
+        .form-control::-webkit-input-placeholder {
+            color: #BDBDBD;
+        }
 
         /* Container */
 
@@ -210,7 +259,7 @@
         .main-bg {
 
             background: #424242;
-            background: linear-gradient( #c6c8ca, #c6c8ca);
+            background: linear-gradient(#c6c8ca, #c6c8ca);
         }
 
         /* Login & Register Pages*/
@@ -221,12 +270,15 @@
             margin: 0 auto;
             padding-top: 100px;
         }
+
         .login.login-container {
             width: 300px;
         }
+
         .wrapper.login-container {
             margin-top: 140px;
         }
+
         .logo-badge {
             color: #e6e6e6;
             font-size: 80px;
