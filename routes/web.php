@@ -23,7 +23,7 @@ Route::group(['prefix' => 'users'], function () {
 
 });
 
-Route::prefix('category')->group(function (){
+    Route::prefix('category')->group(function (){
     Route::get('/', 'CategoryController@show')->name('category.show');
     Route::get('/create', 'CategoryController@create')->name('category.create');
     Route::post('/create', 'CategoryController@store')->name('category.store');
@@ -40,6 +40,7 @@ Route::group(['prefix' => 'roles'], function () {
     Route::post('/edit', 'RoleController@store')->name('roles.store');
     Route::get('/{id}/delete', 'RoleController@delete')->name('roles.delete');
 });
+
 
 
 

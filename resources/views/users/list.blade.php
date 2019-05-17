@@ -12,7 +12,7 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">User</th>
-            <th scope="col">Password</th>
+{{--            <th scope="col">Password</th>--}}
             <th scope="col">Email</th>
             <th scope="col">Phone</th>
             <th scope="col">Address</th>
@@ -30,7 +30,7 @@
         <tr class="table-warning text-dark">
             <th scope="row">{{++$key}}</th>
             <td scope="col">{{$user->name}}</td>
-            <td scope="col">{{$user->password}}</td>
+{{--            <td scope="col">{{$user->password}}</td>--}}
             <td scope="col">{{$user->email}}</td>
             <td scope="col">{{$user->phone}}</td>
             <td scope="col">{{$user->address}}</td>
